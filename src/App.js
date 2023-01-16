@@ -23,7 +23,7 @@ function App() {
 
       ) : (
         <div className="flex flex-col items-center justify-center h-[100vh]">
-          <h2 className="text-2xl font-bold mb-10">Welcome to Vefit Admin</h2>
+          <h2 className="text-2xl font-bold mb-10">Panel administrador de VEFIT</h2>
           <LoginButton />
         </div>
       )}
