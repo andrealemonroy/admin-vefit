@@ -170,7 +170,7 @@ export const NavBar = () => {
         <ModalWithTwoButtons
           title="Cerrar sesión"
           content={`Estás seguro que quieres cerrar sesión?`}
-          button1Text="Si, cerrar sesión"
+          button1Text="Sí, cerrar sesión"
           button2Text="Cancelar"
           onClick1={() => {
             setIsOpen(false);
