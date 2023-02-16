@@ -1,24 +1,12 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import {
-  ClipboardCopyIcon,
-  QuestionMarkCircleIcon,
-  XIcon,
-} from '@heroicons/react/outline';
-import ShimmerEffect from 'react-shimmer-effect';
-import { Tooltip } from '../atoms/Tooltip';
-import { RadioGroup } from '../atoms/RadioButton';
 import { Theme } from '../atoms/theme';
 import { Input } from '../atoms/Input';
 import { CustomSelect as Select } from '../atoms/Select';
 import { ButtonOutline, Button } from '../atoms/Button';
 import { TextArea } from '../atoms/TextArea';
-import { CheckboxAndSwitch } from '../molecules/CheckboxAndSwitch';
-import { SubtitlesM, ParagraphS } from '../atoms/Typography';
 import { formErrorMessage } from '../../utils/formError';
 import { UseFormReturn } from 'react-hook-form';
-import useToast from '../../hooks/useToast';
-import { AddNew } from '../atoms/AddNew';
 import { InputDate } from '../molecules/InputDate';
 import { InputRadio } from '../atoms/InputRadio';
 
@@ -104,27 +92,6 @@ const AddNewButtonWrapper = styled.div`
   height: 2.875rem;
   width: 10rem;
 `;
-const CheckAndSwitchWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-`;
-const ButtonSpacing = styled.div`
-  width: 10rem;
-`;
-const ButtonContainer = styled.div`
-  margin-top: 28px;
-`;
-const Shimmer = ({ label }) => {
-  return (
-    <div style={{ width: '100%' }}>
-      <SubtitlesM>{label}</SubtitlesM>
-      <ShimmerEffect>
-        <div style={{ height: '.875rem', width: '90%' }} />
-      </ShimmerEffect>
-    </div>
-  );
-};
 
 interface IRenderInputConfig {
   input: any;
@@ -158,18 +125,6 @@ const RenderInput = (config: IRenderInputConfig) => {
   const phoneNumberPattern =
     /^\s*(?:\+?(\d{1,3}))?[-. (]*(\d{3})[-. )]*(\d{3})[-. ]*(\d{4})(?: *x(\d+))?\s*/;
 
-  const toast = useToast();
-  const getInputSelected = () => {
-    if (watch(input.id)?.value) {
-      return watch(input.id)?.value === 'Fax'
-        ? watch(input.id)?.value + ' Number'
-        : watch(input.id)?.value;
-    } else if (getValues(input.id)) {
-      return getValues(input.id)[0].value;
-    } else {
-      return input.label.replace('By', 'To');
-    }
-  };
   if (input.link) {
     return (
       <div key={index}>
