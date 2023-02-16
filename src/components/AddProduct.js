@@ -1,26 +1,36 @@
-import React from "react";
-import { Input } from "./atoms/Input";
-import axios from "axios";
+import React from 'react';
+import { Input } from './atoms/Input';
+import axios from 'axios';
 
 const AddProduct = () => {
-  const [name, setName] = React.useState("");
-  const [source, setSource] = React.useState("");
-  const [characteristic, setCharacteristic] = React.useState("");
-  const [benefits, setBenefits] = React.useState("");
-  const [recomendations, setRecomendations] = React.useState("");
+  const [name, setName] = React.useState('');
+  const [source, setSource] = React.useState('');
+  const [characteristic, setCharacteristic] = React.useState('');
+  const [benefits, setBenefits] = React.useState('');
+  const [recomendations, setRecomendations] = React.useState('');
 
   const addProduct = async () => {
+    const random = Math.floor(Math.random() * 10);
     await axios
-      .post(`${process.env.REACT_APP_API_URL}/aliments`, {
-        id: "2",
-        name: name,
-        source: source,
-        characteristic: characteristic,
-        benefits: benefits,
-        recomendations: recomendations,
+      .post(`${process.env.REACT_APP_API_URL}/aliments`, 
+
+      {
+        id: "5",
+        name: 'HABAS COCIDAS',
+        characteristic:
+          'Pertenecen a la familia de las fabáceas, son semillas que se encuentran dentro de una vaina, de 2 a 9 por vaina y puestas en fila, que son tiernas cuando no han madurado, reniformes y de color blanco, verde, o rara vez, carmesí. ',
+        benefits:
+          'Su aporte de fibra, procedente de la piel, facilita la movilidad intestinal y evita el estreñimiento. También contiene vitaminas entre las cuales destacan la vitamina C, los folatos, tiamina y niacina. En cuanto a su contenido mineral, destacan el hierro y fósforo; y en menor cantidad, potasio y magnesio.',
+        recomendations:
+          ' Se recomienda no comer este alimentos en personas que tengan colon irritable, colitis, enfermedad de Crohn o que se encuentren en una dieta baja en FODMAP’s, por su alto contenido en fibra',
+          source: "Lista de Intercambio de Alimentos, ADA. 2017/ Tabla de composición de Alimentos de Centroamérica, INCAP.2012/Haba, Mercado Alimentos FEN, 2018"
       })
       .then(function (response) {
-        console.log(response);
+        setName('');
+        setSource('');
+        setCharacteristic('');
+        setBenefits('');
+        setRecomendations('');
       })
       .catch(function (error) {
         console.log(error);
