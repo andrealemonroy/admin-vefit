@@ -1,15 +1,27 @@
 import React, { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
-import { useParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { Button } from '../components/atoms/Button';
+import { useParams } from 'react-router-dom';
 import { Theme } from '../components/atoms/theme';
 import { TitleM } from '../components/atoms/Typography';
 import { Breadcrumb } from '../components/molecules/Breadcrumb';
 import Form from '../components/organisms/Form';
+import { ToastVariants } from '../constants/variants';
+import { show } from '../redux/reducers/toast';
+import {
+  useGetUsersQuery,
+  useCreateUserMutation,
+  useUpdateUserMutation,
+} from '../redux/reduxQuery/usersApi';
 
 export const UpdateUser = () => {
-  const { email } = useParams();
+  const { _id } = useParams();
   const form = useForm();
+  const [createUser] = useCreateUserMutation();
+  const [updateUser] = useUpdateUserMutation();
+  const { data: users, isFetching } = useGetUsersQuery('');
+  const navigate = useNavigate();
   const crumbs = [
     {
       text: 'Inicio',
@@ -17,7 +29,7 @@ export const UpdateUser = () => {
     },
     {
       text: 'Actualizar usuario',
-      path: `usuario/${email}`,
+      path: `usuarios/${_id}`,
     },
   ];
   const updateUserFormInputs = [
@@ -88,8 +100,15 @@ export const UpdateUser = () => {
   ];
 
   useEffect(() => {
-    form.setValue('email', email);
-  }, [email]);
+    form.setValue('email', users.email);
+    form.setValue('birthday', users.birthday);
+    form.setValue('kindOfFood', users.kindOfFood);
+    form.setValue('weight', users.weight);
+    form.setValue('height', users.height);
+    form.setValue('diseases', users.diseases);
+    form.setValue('termsAndConditions', users.termsAndConditions);
+    form.setValue('privacyPolicy', users.privacyPolicy);
+  }, [users]);
 
   return (
     <div>
