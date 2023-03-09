@@ -17,7 +17,6 @@ import { AddMedicalReport } from './pages/AddMedicalReport';
 import { FoodPlans } from './pages/FoodPlans';
 import { AddFoodPlans } from './pages/AddFoodPlans';
 import { CreateUser } from './pages/createUser';
-import { UpdateUser } from './pages/UpdateUser';
 
 export default function RouteNavigator() {
   const { loginWithRedirect, isAuthenticated, isLoading } = useAuth0();
@@ -33,7 +32,7 @@ export default function RouteNavigator() {
             <Route path="/" element={<Dashboard />} />
             <Route path="crear-usuario" element={<CreateUser />} />
             <Route path="usuarios">
-              <Route path=":email" element={<UpdateUser />} />
+              <Route path=":id" element={<CreateUser />} />
               <Route path="*" element={<Navigate to="/" />} />
             </Route>
             <Route path="alimentos" element={<Foods />} />

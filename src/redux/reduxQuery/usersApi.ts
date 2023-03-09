@@ -23,7 +23,7 @@ const usersApi = api.injectEndpoints({
     }),
     updateUser: build.mutation({
       query: (user) => ({
-        url: `users/${user.id}`,
+        url: `users/${user._id}`,
         method: `PUT`,
         body: user,
       }),

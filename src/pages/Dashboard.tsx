@@ -93,7 +93,7 @@ const Dashboard = () => {
       <div className="my-3">
         <TitleM>Usuarios</TitleM>
       </div>
-      {isFetching ? (
+      {isFetching && !users ? (
         <div>Loading...</div>
       ) : (
         <Table columns={columns} data={users} tableType={'users'} onClick={() => navigate('/crear-usuario')} />
